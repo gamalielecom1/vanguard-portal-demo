@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal Vanguard Strategy</title>
+<link rel="icon" type="image/svg+xml" href="assets/simbolo-gold.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/legacy-v4.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/puntos.css">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/inicio.css">
+<link rel="stylesheet" href="css/motion.css">
+<script src="js/theme.js"></script>
+</head>
+<body>
+<header class="topnav" id="topnav">
+  <div class="tn-row tn-a">
+    <a class="tn-brand" href="#inicio" aria-label="Vanguard Strategy · Inicio"><img class="logo-l" src="assets/logo-claro.png" alt="Vanguard Strategy"><img class="logo-d" src="assets/logo-oscuro.png" alt="Vanguard Strategy"><img class="mark" src="assets/simbolo-gold.svg" alt=""></a>
+    <div class="vpbar" id="vpbar" aria-label="Tus puntos Vanguard"></div>
+    <div class="top-right">
+      <div class="seg" role="group" aria-label="Cambiar de vista">
+        <button id="v-portal" type="button" aria-pressed="true">Portal del cliente</button>
+        <button id="v-bo" type="button" aria-pressed="false">Back office</button>
+      </div>
+      <button class="link" id="demo-reset" type="button">Reiniciar demo</button>
+    </div>
+    <div class="bo-tools" id="bo-tools" hidden><label class="small muted" for="bo-cfg">Configuración</label><select id="bo-cfg" class="emp-sel"><option value="">Elegir…</option><option value="reglas">Reglas del ejecutivo</option><option value="tarifario">Tarifario</option><option value="admcursos">Cursos</option><option value="lanzamientos">Novedades y campañas</option><option value="datos">Datos que capturamos</option><option value="economia">Economía de puntos</option><option value="reenganche">Reenganche automático</option></select><span class="avatar">SO</div>
+    <div class="app-actions" id="app-actions">
+      <button class="bell" id="help-btn" type="button" title="Centro de ayuda" aria-label="Centro de ayuda"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h0"/></svg></button>
+      <button class="bell" id="bell" type="button" title="Novedades" aria-label="Novedades"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 21a2 2 0 0 0 4 0"/></svg><span class="badge" id="bell-n" hidden></span></button>
+      <button class="avatar" id="av" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="cfg-menu" title="Mi cuenta"></button>
+    </div>
+  </div>
+  <div class="tn-row tn-b">
+    <div id="head-portal" class="tn-nav">
+    <nav class="subnav" id="nav-portal" aria-label="Portal del cliente">
+      <button class="nv" type="button" data-page="inicio" title="Inicio"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span class="nl">Inicio</span></button>
+      <button class="nv" type="button" data-page="empresas" title="Mis empresas"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M8 8h2M8 12h2M8 16h2M3 21h18"/></svg><span class="nl">Mis empresas</span></button>
+      <button class="nv" type="button" data-page="productos" title="Mis sistemas"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg><span class="nl">Mis sistemas</span></button>
+      <button class="nv" type="button" data-page="cursos" title="Cursos"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h13"/></svg><span class="nl">Cursos</span></button>
+      <button class="nv" type="button" data-page="herramientas" title="Herramientas"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M12 12h2M8 16h2M12 16h2"/></svg><span class="nl">Herramientas</span></button>
+      <button class="nv" type="button" data-page="sesiones" title="Acompañamiento"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="nl">Acompañamiento</span></button>
+      <button class="nv" type="button" data-page="proyectos" title="Proyectos a medida"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span class="nl">Proyectos a medida</span></button>
+      <button class="nv nv-cfo" type="button" data-page="cfo" title="Vanguard CFO"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="nl">Vanguard CFO</span><span class="badge">Demo</span></button>
+    </nav>
+    </div>
+    <nav class="subnav" id="nav-bo" aria-label="Back office" hidden>
+      <button class="nv nv-back" type="button" data-page="inicio" title="Volver al portal"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span class="nl">Portal</span></button>
+      <button class="nv" type="button" data-page="clientes"><span class="dotb"></span><span class="nl">Clientes</span></button>
+      <button class="nv" type="button" data-page="ficha"><span class="dotb"></span><span class="nl">Ficha 360</span></button>
+      <button class="nv" type="button" data-page="bandeja"><span class="dotb"></span><span class="nl">Oportunidades</span> <span class="badge" id="bd-count"></span></button>
+      <button class="nv" type="button" data-page="soporte"><span class="dotb"></span><span class="nl">Tickets</span></button>
+      <button class="nv" type="button" data-page="alertas"><span class="dotb"></span><span class="nl">Notificaciones</span> <span class="badge" id="al-count" hidden></span></button>
+      <button class="nv" type="button" data-page="voz"><span class="dotb"></span><span class="nl">Voz del cliente</span></button>
+      <button class="nv" type="button" data-page="analitica"><span class="dotb"></span><span class="nl">Analítica de uso</span></button>
+      <button class="nv" type="button" data-page="admcfo"><span class="dotb"></span><span class="nl">Vanguard CFO</span></button>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <p class="demo"><b>Maqueta con datos ficticios.</b> Cliente de ejemplo: un contador con 4 empresas que compró Control Total Pro. Productos y precios de <span class="mono">catalogo.md</span>; beneficios, upgrades, packs, tarifario y noticias son <b>propuestas o ejemplos</b>. Lo que hagas en el portal aparece en el back office.</p>
+  <div class="announce" id="announce" aria-live="polite"></div>
+
+  <!-- ===== INICIO ===== -->
+  <main class="page home" id="pg-inicio" hidden>
+    <header class="home-head">
+      <div><h1 class="greet" id="in-title"></h1><p class="home-sub" id="in-sub"></p></div>
+      <span class="muted small" id="in-meta"></span>
+    </header>
+    <section class="card next" id="in-next"></section>
+    <section class="card" id="in-systems"></section>
+    <div class="layout home-cols">
+      <div class="stack">
+        <section class="card" id="in-tasks"></section>
+        <section class="card" id="in-course"></section>
+      </div>
+      <aside class="stack">
+        <section class="card" id="in-nov" hidden></section>
+        <section class="card" id="in-sess"></section>
+        <section class="card" id="in-proj"></section>
+      </aside>
+    </div>
+    <section class="card" id="in-news"></section>
+    <div class="grid2 home-foot">
+      <section class="card cfo-card" id="in-cfo"></section>
+      <section class="card" id="in-q"></section>
+    </div>
+  </main>
+
+  <!-- ===== EMPRESAS ===== -->
+  <main class="page" id="pg-empresas" hidden>
+    <div class="sec-head" style="margin-bottom:0">
+      <div>
+        <h1 class="page-title">Mis empresas</h1>
+        <p class="muted">Cada empresa guarda su ficha, sus enlaces y su acompañamiento. <span id="emp-sum"></span></p>
+      </div>
+      <button class="btn btn-gold" type="button" id="emp-new">+ Agregar empresa</button>
+    </div>
+    <section class="card guided" id="emp-form-card" hidden></section>
+    <details class="card why-card" id="emp-why">
+      <summary><span><b>Qué ganas al agregar tus empresas</b><span class="muted small" id="emp-why-hint"> · toca para abrir</span></span><span class="why-chev" aria-hidden="true"></span></summary>
+      <div class="why-grid">
+        <div><span class="eyebrow">1 clic</span><b>Todos tus sistemas y dashboards</b><span class="muted small">El enlace de cada copia, por empresa. Sin buscar en Drive ni perderte entre clientes.</span></div>
+        <div><span class="eyebrow">Acompañamiento</span><b>El asesor llega preparado</b><span class="muted small">Con la ficha de la empresa a la vista, la sesión de 30 minutos rinde el doble.</span></div>
+        <div><span class="eyebrow">A medida</span><b>Proyectos pensados para esa empresa</b><span class="muted small">Cotiza un desarrollo y queda asociado a la empresa correcta.</span></div>
+        <div><span class="eyebrow">Ofertas</span><b>Recomendaciones que calzan</b><span class="muted small">Con el tamaño y el rubro de cada empresa te mostramos solo lo que sirve.</span></div>
+      </div>
+    </details>
+    <div class="emps" id="emp-grid"></div>
+  </main>
+
+  <!-- ===== MIS SISTEMAS ===== -->
+  <main class="page" id="pg-productos" hidden>
+    <div>
+      <h1 class="page-title">Mis sistemas</h1>
+      <p class="muted">Cada sistema que compraste, por empresa: complétalo, ábrelo y guarda aquí tus informes.</p>
+    </div>
+    <div class="stack" id="pr-list"></div>
+  </main>
+
+  <!-- ===== CURSOS ===== -->
+  <main class="page" id="pg-cursos" hidden>
+    <div>
+      <h1 class="page-title">Cursos</h1>
+      <p class="muted">Cada sistema trae su curso. Retoma donde quedaste; te avisamos cuando haya lecciones nuevas.</p>
+    </div>
+    <div id="cs-body"></div>
+    <div class="stack" id="cs-more" hidden>
+      <div class="ccards" id="cs-cards"></div>
+    </div>
+  </main>
+
+  <!-- ===== HERRAMIENTAS ===== -->
+  <main class="page" id="pg-herramientas" hidden>
+    <div>
+      <h1 class="page-title">Calculadoras financieras</h1>
+      <p class="muted">Para decisiones puntuales: valorizar, evaluar una inversión, comparar créditos o fijar precios. Al exportar el PDF, queda guardado en Mis sistemas y tu asesor ve el resumen antes de la sesión.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tool-tabs"></div>
+    <section class="card" id="tool-card"></section>
+  </main>
+
+  <!-- ===== SESIONES ===== -->
+  <main class="page" id="pg-sesiones" hidden>
+    <div>
+      <h1 class="page-title">Acompañamiento</h1>
+      <p class="muted">Un asesor que conoce tus empresas te ayuda a decidir y a avanzar.</p>
+    </div>
+    <div class="stack">
+      <section class="card wiz" id="ss-book" style="max-width:none"></section>
+      <section class="card" id="ss-hist"></section>
+    </div>
+  </main>
+
+  <!-- ===== PROYECTOS ===== -->
+  <main class="page" id="pg-proyectos" hidden>
+    <div>
+      <h1 class="page-title">Cotiza tu proyecto</h1>
+      <p class="muted">Tres pasos, una pantalla a la vez. El precio «desde» sube a medida que eliges qué incluir.</p>
+    </div>
+    <div class="note"><span>i</span><span><b>Es un precio de partida, no una propuesta.</b> Cuando envíes tu solicitud te contactamos, vemos tu proyecto en una reunión y te entregamos el presupuesto final con toda la documentación.</span></div>
+    <section class="card" id="pj-mine"></section>
+    <section class="card wiz" id="pj-build"></section>
+  </main>
+
+  <!-- ===== PARA TI ===== -->
+  <main class="page" id="pg-parati" hidden>
+    <div>
+      <div class="eyebrow" id="pt-eyebrow"></div>
+      <h1 class="page-title">Recomendado para ti</h1>
+      <p class="muted">Responde unas preguntas en cada producto y desbloquea tu beneficio de cliente. Si algo no calza, ocúltalo.</p>
+    </div>
+    <section class="card" id="pt-ladder"></section>
+    <div class="recs" id="pt-recs"></div>
+    <section class="card" id="pt-addons"></section>
+  </main>
+
+  <!-- ===== MI PERFIL ===== -->
+  <main class="page" id="pg-perfil" hidden>
+    <div>
+      <h1 class="page-title">Mi perfil</h1>
+      <p class="muted">Con esto personalizamos tus noticias, tus cursos y las recomendaciones. Puedes cambiar cualquier dato.</p>
+    </div>
+    <div class="grid2">
+      <section class="card" id="pf-me"></section>
+      <section class="card" id="pf-pref"></section>
+    </div>
+    <section class="card" id="pf-notif"></section>
+  </main>
+
+  <!-- ===== VANGUARD CFO ===== -->
+  <main class="page cfo-page" id="pg-cfo" hidden>
+    <div id="cf-landing"></div>
+    <div id="cf-member" class="stack" hidden>
+      <section class="card cfo-hero" id="cf-hero"></section>
+      <div class="layout">
+        <div class="stack"><section class="card" id="cf-road"></section><section class="card" id="cf-upd"></section></div>
+        <aside class="stack"><section class="card" id="cf-found"></section><section class="card" id="cf-fb"></section></aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== NOVEDADES ===== -->
+  <main class="page" id="pg-novedades" hidden>
+    <div><div class="eyebrow">Lo nuevo</div><h1 class="page-title">Novedades</h1><p class="muted">Versiones nuevas de tus sistemas, sistemas nuevos y avances de Vanguard CFO. También te llegan por correo.</p></div>
+    <div class="stack" id="nv-list"></div>
+  </main>
+
+  <!-- ===== PLANES Y PAGOS ===== -->
+  <main class="page" id="pg-pagos" hidden>
+    <div><h1 class="page-title">Pagos</h1><p class="muted">Lo que debes pagar, tu suscripción, tus tarjetas, tus cupones y todo lo que has pagado. <span id="pg-sum"></span></p></div>
+    <section class="card" id="pg-pend"></section>
+    <div class="grid2" id="pg-planes"></div>
+    <section class="card" id="pg-cards"></section>
+    <section class="card" id="pg-cupones"></section>
+    <section class="card" id="pg-hist"></section>
+  </main>
+
+  <!-- ===== BO · SUSCRIPCIONES Y PAGOS ===== -->
+  <main class="page" id="pg-suscripciones" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Ingresos</div><h1 class="page-title">Pagos e ingresos</h1><p class="muted">Lo que pagan los clientes desde el portal: sesiones, packs, proyectos, complementos y Vanguard CFO. Con lo que se le paga al freelance por cada sesión.</p></div><span class="pill warn">Pack y pago al freelance: propuesta</span></div>
+    <div class="stats" id="su-stats"></div>
+    <section class="card" id="su-subs"></section>
+    <div class="grid2"><section class="card" id="su-pagos"></section><section class="card tar" id="su-cfg"></section></div>
+  </main>
+
+  <main class="page" id="pg-puntos" hidden></main>
+  <main class="page" id="pg-ayuda" hidden></main>
+  <main class="page" id="pg-voz" hidden></main>
+  <main class="page" id="pg-actividad" hidden></main>
+  <main class="page" id="pg-alertas" hidden></main>
+  <main class="page" id="pg-soporte" hidden></main>
+
+  <!-- ===== BO · CLIENTES ===== -->
+  <main class="page" id="pg-clientes" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Back office</div><h1 class="page-title">Clientes</h1><p class="muted">Qué ha hecho cada cliente en el portal. Haz clic en una fila para abrir su ficha.</p></div><span class="pill warn">Solo la primera fila es en vivo; el resto es ejemplo</span></div>
+    <div class="stats" id="cl-stats"></div>
+    <section class="card"><div class="tbl-wrap"><table id="cl-table"></table></div></section>
+  </main>
+
+  <main class="page" id="pg-ficha" hidden><div id="fc-body" class="stack"></div></main>
+
+  <!-- ===== BO · BANDEJA ===== -->
+  <main class="page" id="pg-bandeja" hidden>
+    <div><div class="eyebrow">Lo que pidió el cliente</div><h1 class="page-title">Oportunidades</h1><p class="muted">Proyectos, formularios de producto, interés en packs y sesiones. Cambia el estado de un proyecto y el cliente lo ve en su portal.</p></div>
+    <section class="card"><div class="card-head"><h3>Solicitudes de proyecto a medida</h3><span class="muted small">Estados iguales a la tabla de proyectos del ERP</span></div><div class="tbl-wrap"><table id="bd-proj"></table></div></section>
+    <section class="card"><div class="card-head"><h3>Formularios e interés</h3><span class="muted small">Para calificar y llamar</span></div><div class="tbl-wrap"><table id="bd-leads"></table></div></section>
+    <section class="card"><div class="card-head"><h3>Sesiones agendadas</h3></div><div class="tbl-wrap"><table id="bd-sess"></table></div></section>
+  </main>
+
+  <!-- ===== BO · REGLAS ===== -->
+  <main class="page" id="pg-reglas" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Configuración</div><h1 class="page-title">Reglas para el ejecutivo</h1><p class="muted">Cómo se elige la siguiente acción de cada cliente y cómo se calcula su probabilidad de compra.</p></div><span class="pill warn">Propuesta: ajustar con el equipo</span></div>
+    <section class="card"><div class="card-head"><h3>Cómo funcionan</h3></div><div class="grid2 small"><div><b>Siguiente mejor acción</b><ol style="margin:6px 0;padding-left:18px;display:grid;gap:4px"><li>Cada vez que se abre la ficha de un cliente, el sistema revisa las reglas de la tabla, <b>de arriba hacia abajo</b>.</li><li>La <b>primera que se cumple</b> es la que ve el ejecutivo como «siguiente mejor acción», con el motivo.</li><li>Ejemplo: si el cliente pidió que lo llamen, gana «Llamar hoy» aunque también tenga tareas atrasadas.</li><li>Las subes, bajas o apagas aquí. Una regla nueva se programa en el ERP.</li></ol></div><div><b>Probabilidad de compra</b><ol style="margin:6px 0;padding-left:18px;display:grid;gap:4px"><li>Suma puntos por señales de intención (pidió llamada, respondió un formulario) y de actividad (sistemas vinculados, lecciones).</li><li>Resta por señales negativas (no entra hace 14 o 30 días, ocultó recomendaciones).</li><li>Lo de intención pierde fuerza con el tiempo: vale entero hasta 30 días, la mitad hasta 60.</li><li>Todos los datos salen del portal, los tickets y Shopify.</li></ol></div></div></section>
+    <section class="card" id="rg-list"></section>
+    <section class="card" id="rg-w"></section>
+  </main>
+
+  <!-- ===== BO · NOVEDADES Y CAMPAÑAS ===== -->
+  <main class="page" id="pg-lanzamientos" hidden>
+    <div><div class="eyebrow">Comunicación</div><h1 class="page-title">Novedades y campañas</h1><p class="muted">Anuncia una versión nueva o un sistema nuevo. Aparece en el portal de quien corresponde y se arma el correo de la campaña.</p></div>
+    <div class="layout"><section class="card" id="ln-list"></section><aside class="stack"><section class="card" id="ln-form"></section></aside></div>
+  </main>
+
+  <!-- ===== BO · VANGUARD CFO ===== -->
+  <main class="page" id="pg-admcfo" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Línea D</div><h1 class="page-title">Vanguard CFO · primera demo</h1><p class="muted">Quién la mira, quién se suma como fundador, qué piden y qué les contamos.</p></div><span class="pill warn">Precio y días gratis: por definir</span></div>
+    <div class="stats" id="ac2-stats"></div>
+    <div class="grid2"><section class="card" id="ac2-votes"></section><section class="card" id="ac2-fb"></section></div>
+    <div class="grid2"><section class="card" id="ac2-pub"></section><section class="card" id="ac2-cfg"></section></div>
+  </main>
+
+  <!-- ===== BO · CURSOS ===== -->
+  <main class="page" id="pg-admcursos" hidden>
+    <div><div class="eyebrow">Contenido</div><h1 class="page-title">Cursos por sistema</h1><p class="muted">Agrega, ordena o quita lecciones. El cliente las ve de inmediato en su portal.</p></div>
+    <div class="tabs" id="ac-tabs"></div>
+    <div class="layout">
+      <section class="card" id="ac-list"></section>
+      <aside class="stack"><section class="card" id="ac-form"></section><section class="card" id="ac-stats"></section></aside>
+    </div>
+  </main>
+
+  <!-- ===== BO · TARIFARIO ===== -->
+  <main class="page" id="pg-economia" hidden></main>
+  <main class="page" id="pg-reenganche" hidden></main>
+  <main class="page" id="pg-trafico" hidden></main>
+  <main class="page" id="pg-cursosprod" hidden></main>
+  <main class="page" id="pg-tarifario" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Cotizador de proyectos</div><h1 class="page-title">Tarifario</h1><p class="muted">Los precios de referencia que ve el cliente al cotizar.</p></div><span class="pill warn">Propuesta: validar precios</span></div>
+    <div class="grid2"><section class="card tar" id="tf-a"></section><section class="card tar" id="tf-b"></section></div>
+  </main>
+
+  <!-- ===== BO · ANALÍTICA ===== -->
+  <main class="page" id="pg-analitica" hidden>
+    <div class="row between" style="align-items:end"><div><div class="eyebrow">Últimos 30 días · ejemplo</div><h1 class="page-title">Analítica</h1><p class="muted">Qué hacen los clientes después de comprar y dónde se pierde la segunda venta.</p></div><span class="pill warn">Cifras ficticias</span></div>
+    <div class="stats" id="an-stats"></div>
+    <div class="grid2">
+      <section class="card"><div class="card-head"><h3>Embudo después de la compra</h3><span class="muted small">De 100 compradores</span></div><div class="funnel" id="an-funnel"></div></section>
+      <section class="card"><div class="card-head"><h3>Ingreso por cliente</h3></div><div id="an-aov"></div><div class="legend" style="margin-top:8px"><span><i style="background:var(--info)"></i>Primera compra</span><span><i style="background:var(--gold)"></i>Productos 2+, sesiones y proyectos</span></div></section>
+    </div>
+    <div class="grid2">
+      <section class="card"><div class="card-head"><h3>Qué temas interesan</h3><span class="muted small">Noticias leídas y sesiones pedidas</span></div><div class="tbl-wrap"><table id="an-topics"></table></div></section>
+      <section class="card"><div class="card-head"><h3>Segmentos</h3></div><div class="tbl-wrap"><table id="an-seg"></table></div></section>
+    </div>
+  </main>
+
+  <!-- ===== BO · DATOS ===== -->
+  <main class="page" id="pg-datos" hidden>
+    <div><div class="eyebrow">Plan de captura</div><h1 class="page-title">Cómo le sacamos información al cliente</h1><p class="muted">Cada momento del portal pregunta algo a cambio de algo. Esta es la lista para quien programe el ERP.</p></div>
+    <section class="card"><div class="card-head"><h3>Momentos de captura</h3><span class="muted small">Qué preguntamos, qué recibe el cliente y dónde lo ves</span></div><div class="tbl-wrap"><table id="dt-map"></table></div></section>
+    <div class="grid2">
+      <section class="card"><div class="card-head"><h3>Eventos que se registran</h3></div><div class="tbl-wrap"><table id="dt-events"></table></div></section>
+      <section class="card"><div class="card-head"><h3>Resguardos y pendientes</h3></div>
+        <div class="list small">
+          <div class="note"><span>i</span><span>Los datos de las empresas y los cálculos son información financiera del cliente y, si es contador, de terceros. Se necesita consentimiento explícito y una política de privacidad publicada.</span></div>
+          <div>Revisar con un abogado la adecuación a la nueva ley de datos personales (Ley 21.719). <span class="pill warn">Pendiente</span></div>
+          <div>El portal guarda solo los <b>enlaces</b> a sistemas y dashboards; no lee su contenido. Un dashboard publicado como web app puede quedar visible para quien tenga el enlace. <span class="pill warn">Revisar permisos</span></div>
+          <div><b>Noticias:</b> conectar fuentes por RSS o por su sitio (SII, Dirección del Trabajo, Banco Central, prensa económica). Revisar los términos de uso de cada medio: mostrar solo título, fecha y enlace al original. <span class="pill warn">Pendiente</span></div>
+          <div><b>Indicadores:</b> se piden en vivo a mindicador.cl (API pública). Validar que sirve para producción o usar el conector de indicadores que ya tenemos. <span class="pill warn">Por validar</span></div>
+          <div>Agendar y pagar: conectar el calendario del asesor (Google Calendar) y el enlace de pago (Shopify o Mercado Pago). <span class="pill warn">Pendiente</span></div>
+          <div>No usar los datos de las empresas que atiende un contador para contactarlas directamente.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="cfg-menu" id="cfg-menu" role="menu" hidden>
+  <div class="cfg-head"><b id="cfg-name"></b><span class="muted small" id="cfg-lv"></span></div>
+  <button type="button" role="menuitem" class="cfg-main" data-page="perfil"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Configuración</button>
+  <button type="button" role="menuitem" class="cfg-sub" data-page="perfil">Perfil y avisos</button>
+  <button type="button" role="menuitem" class="cfg-sub" data-page="pagos">Pagos</button>
+  <button type="button" role="menuitem" class="cfg-sub" data-page="puntos">Puntos y recompensas</button>
+  <div class="cfg-sep"></div>
+  <button type="button" role="menuitem" data-page="ayuda">Centro de ayuda</button>
+</div>
+<div class="ov" id="ov" hidden><div class="modal" id="modal" role="dialog" aria-modal="true" tabindex="-1"></div></div>
+<div id="toast" role="status" hidden></div>
+
+<script src="js/config.js"></script>
+<script src="js/puntos.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/anuncios.js"></script>
+<script src="js/economia.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

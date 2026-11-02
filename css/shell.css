@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Marco de la aplicación: encabezado superior en dos filas.
+   Fila A: logo, puntos, modo claro/oscuro, ayuda, campana y cuenta.
+   Fila B: navegación principal. Todo queda fijo arriba al hacer scroll.
+   ========================================================================== */
+:root { --tn-a: 64px; --tn-b: 50px; }
+body { padding: 0 !important; }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 4px 32px 64px; }
+
+.topnav { position: sticky; top: 0; z-index: 45; background: rgba(255,255,255,.9); border-bottom: 1px solid var(--line); backdrop-filter: blur(22px) saturate(1.4); box-shadow: 0 1px 0 rgba(13,27,42,.03), 0 8px 24px -18px rgba(13,27,42,.25); }
+:root[data-theme="dark"] .topnav { background: rgba(10,22,36,.9); box-shadow: 0 8px 24px -18px rgba(0,0,0,.6); }
+.tn-row { display: flex; align-items: center; gap: 16px; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.tn-a { min-height: var(--tn-a); }
+.tn-b { min-height: var(--tn-b); }
+.tn-a { padding-bottom: 2px; }
+
+/* Logo */
+.tn-brand { display: flex; align-items: center; flex: none; padding: 6px 0; }
+.tn-brand img { height: 38px; width: auto; display: block; }
+.tn-brand .logo-d, .tn-brand .mark { display: none; }
+:root[data-theme="dark"] .tn-brand .logo-l { display: none; }
+:root[data-theme="dark"] .tn-brand .logo-d { display: block; }
+
+/* Acciones de la derecha */
+.tn-a .top-right { margin-left: 0; gap: 10px; flex-wrap: nowrap; }
+.tn-a .top-right .seg button { padding: 6px 12px; font-size: 12.5px; } .tn-a .top-right .link { white-space: nowrap; }
+.tn-a .theme-toggle { width: 38px; height: 38px; }
+.app-actions { display: flex; align-items: center; gap: 10px; flex: none; } .app-actions[hidden] { display: none; }
+.bell { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; position: relative; padding: 0; background: var(--surface); border: 1px solid var(--glass-border); color: var(--fg); box-shadow: var(--shadow); transition: color .2s, transform .25s var(--ease); }
+.bell:hover { color: var(--gold); transform: none; } .bell .badge { position: absolute; top: -4px; right: -4px; margin: 0; }
+.tn-a .avatar { width: 38px; height: 38px; }
+
+/* Puntos integrados en el encabezado: sin contenedor, separados por líneas finas */
+.tn-a .vpbar { margin-left: auto; display: flex !important; align-items: center; gap: 0; padding: 0; border: 0; border-radius: 0; background: none; backdrop-filter: none; box-shadow: none; }
+.tn-a .vpbar[hidden] { display: none !important; }
+.tn-a .vpbar > :not(.btn) { padding: 0 18px; } .tn-a .vpbar > :not(.btn) + :not(.btn) { border-left: 1px solid var(--line); } .tn-a .vpbar > :first-child { padding-left: 0; }
+.tn-a .vp-coin { width: 34px; height: 34px; font-size: 11px; box-shadow: 0 0 0 3px rgba(201,168,76,.18); }
+.tn-a .vp-bal { gap: 10px; } .tn-a .vp-bal b { font-size: 17px; } .tn-a .vp-bal small { font-size: 11px; }
+.tn-a .vp-goal { width: 250px; gap: 5px; font-size: 12px; } .tn-a .vp-goal .bar { height: 6px; box-shadow: none; } .tn-a .vp-goal .bar > span { box-shadow: none; }
+.tn-a .vp-streak { gap: 8px; } .tn-a .vp-streak b { font-size: 16px; } .tn-a .vp-flame { width: 28px; height: 28px; }
+.tn-a .vp-level { width: 150px; gap: 5px; font-size: 12px; } .tn-a .vp-level .bar.thin { height: 5px; box-shadow: none; } .tn-a .vp-level .bar > span { box-shadow: none; }
+.tn-a .vpbar > .vp-ci { display: inline-flex; align-items: center; justify-content: center; padding: 0 22px; height: 40px; margin-left: 12px; min-width: 132px; text-align: center; } .tn-a .vp-ci.done { border-color: var(--line); background: none; color: var(--muted); }
+.tn-a .vp-ci:not(.done) { animation: none; }
+
+/* Navegación principal */
+.tn-nav { flex: 1; min-width: 0; }
+.topnav .subnav { position: static !important; top: auto !important; inset-inline: auto; z-index: auto; display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap !important; gap: 2px; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none;
+  overflow-x: auto !important; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; width: 100%; }
+.topnav .subnav::-webkit-scrollbar { display: none; }
+.topnav .subnav button.nv { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 999px; font-size: 13px; white-space: nowrap; flex: none; }
+.topnav .subnav button.nv .ic { opacity: .8; width: 18px; height: 18px; } .topnav .subnav button.nv[aria-current="page"] .ic { opacity: 1; }
+.topnav .subnav button.nv .badge { margin-left: 4px; }
+.topnav .subnav button.nv.nv-cfo { margin-left: auto; } .topnav #nav-bo .nv-back { margin-right: 6px; }
+.tn-b > .subnav, .tn-b > .tn-nav { flex: 1; }
+.dotb { display: none; }
+
+/* Anuncios en el flujo */
+.announce { margin-top: 16px; } .announce:empty { display: none; }
+.ann { position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 20px; border-radius: 16px; overflow: hidden; background: linear-gradient(90deg, var(--gold-soft), transparent 70%), var(--surface); border: 1px solid var(--glass-border); box-shadow: var(--shadow); animation: annIn .5s var(--ease) both; }
+.ann::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--gold-fill), var(--steel)); }
+.ann-body { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; }
+.ann-title { font-size: 14px; letter-spacing: -.01em; } .ann-text { font-size: 13px; color: var(--muted); }
+.ann-pager { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.ann-pager button, .ann-x { background: none; border: 0; width: 26px; height: 26px; border-radius: 50%; font-size: 18px; line-height: 1; color: var(--muted); display: grid; place-items: center; } .ann-pager button:hover, .ann-x:hover { background: var(--surface-2); color: var(--fg); }
+@keyframes annIn { from { opacity: 0; transform: translateY(-8px); } }
+
+/* Capas: modales y menús por encima del encabezado */
+.ov { z-index: 70 !important; } #toast { z-index: 80 !important; } .cfg-menu { z-index: 65 !important; }
+
+/* Ajustes de páginas con el nuevo alto de cabecera */
+.cfo-screen { min-height: calc(100vh - 220px); } .wz-sum { top: 140px; } .quote-box { top: 140px; }
+
+/* ---------- Pantallas medianas y móviles ---------- */
+@media (max-width: 1400px) { .tn-a .vp-level { display: none; } }
+@media (max-width: 1320px) { .tn-nav { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); } }
+@media (max-width: 1180px) { .tn-row { padding-inline: 24px; } .wrap { padding-inline: 24px; } .tn-a .vp-goal { width: 160px; } .tn-a .vpbar > :not(.btn) { padding: 0 12px; } .tn-a .vpbar > :first-child { padding-left: 0; } .tn-a .vp-streak small { display: none; } }
+@media (max-width: 960px) { .tn-a .vp-goal { display: none; } .tn-a .top-right .seg, .tn-a .top-right .link { display: none; } body.dev .tn-a .top-right .seg { display: inline-flex; } }
+@media (max-width: 640px) {
+  .tn-row { padding-inline: 14px; gap: 10px; } .wrap { padding-inline: 16px; }
+  .tn-brand img:not(.mark) { display: none !important; } .tn-brand .mark { display: block; height: 32px; }
+  .tn-a .vp-streak, .tn-a .vp-bal small { display: none; } .tn-a .vpbar > .vp-ci { padding: 0 14px; min-width: 0; height: 36px; font-size: 12px; }
+  .tn-a .theme-toggle, #help-btn { display: none; }
+  .topnav .subnav button.nv { padding: 8px 12px; } .topnav .subnav button.nv.nv-cfo { margin-left: 0; }
+  .cfo-screen { min-height: 0; }
+}
+@media (max-width: 720px) {
+  .ann { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 10px; padding: 12px 12px 12px 18px; }
+  .ann .pill { grid-column: 1; justify-self: start; } .ann-x { grid-column: 2; grid-row: 1; justify-self: end; }
+  .ann-body { grid-column: 1 / -1; display: grid; gap: 2px; } .ann-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ann > .btn { grid-column: 1; justify-self: start; } .ann-pager { grid-column: 2; justify-self: end; }
+}
+@media (prefers-reduced-motion: reduce) { .ann { animation: none; } }
+
+/* Herramientas del back office (configuración) en la fila superior */
+.bo-tools { margin-left: auto; display: flex; align-items: center; gap: 10px; flex: none; } .bo-tools[hidden] { display: none; }
+.bo-tools label { font-size: 12px; color: var(--muted); } .bo-tools select { width: 210px; max-width: none; border-radius: 999px; padding: 7px 14px; }
+@media (max-width: 720px) { .bo-tools label { display: none; } .bo-tools select { width: 150px; } }
+
+.tn-a .vpbar > * { flex: none; } .tn-a .vp-goal .row, .tn-a .vp-level .row { flex-wrap: nowrap; gap: 8px; white-space: nowrap; }
+
+/* Tarjeta informativa que se ve una vez y queda plegada */
+.why-card { padding: 0; } .why-card > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 24px; }
+.why-card > summary::-webkit-details-marker { display: none; } .why-card > .why-grid { padding: 0 24px 24px; }
+.why-chev { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; flex: none; transition: transform .3s var(--ease); }
+.why-chev::before { content: ""; width: 7px; height: 7px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg) translate(-1px, -1px); }
+.why-card[open] > summary .why-chev { transform: rotate(180deg); } .why-card[open] #emp-why-hint { display: none; }
+
+/* Menú de cuenta con acceso a Configuración */
+.cfg-menu .cfg-main { display: flex; align-items: center; gap: 10px; font-weight: 600; } .cfg-menu .cfg-sub { padding-left: 40px; font-size: 13.5px; color: var(--muted); } .cfg-menu .cfg-sub:hover { color: var(--gold); }
+.cfg-sep { height: 1px; background: var(--line); margin: 6px 4px; }
+.cfg-top { display: grid; gap: 14px; } .cfg-title { margin: 0; font-size: clamp(26px, 2.6vw, 32px); }
+.cfg-tabs { align-items: center; }

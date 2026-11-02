@@ -1,0 +1,20 @@
+/* Movimiento: entrada de tarjetas al hacer scroll, indicador del menú y pequeños detalles. */
+.rv { opacity: 0; transform: translateY(20px); animation: none !important; }
+.rv, .rv-in { transition: opacity .75s var(--ease), transform .75s var(--ease) !important; }
+.rv-in { opacity: 1; transform: none; }
+
+/* Indicador deslizante del menú */
+.topnav .subnav { position: relative !important; top: auto !important; }
+.nav-ind { position: absolute; left: 0; top: 0; border-radius: 999px; pointer-events: none; z-index: 0; background: var(--navy); box-shadow: 0 8px 20px -8px rgba(13,27,42,.6); transition: transform .5s var(--ease), width .5s var(--ease), height .3s, opacity .25s; }
+:root[data-theme="dark"] .nav-ind { background: linear-gradient(135deg, #EAD08F, var(--gold-fill)); box-shadow: 0 8px 22px -8px rgba(201,168,76,.55); }
+.topnav .subnav button.nv { position: relative; z-index: 1; }
+.topnav .subnav button.nv[aria-current="page"]:not(.nv-cfo) { background: transparent !important; box-shadow: none !important; }
+.topnav .subnav button.nv[aria-current="page"]:not(.nv-cfo) { transition: color .3s; }
+
+/* Detalles: foco y pulsación suaves */
+.btn, .chips button, .qopts button, .area, .ptype, .fg-opt { transition-timing-function: var(--ease); }
+details > summary { transition: color .2s; }
+.modal { transform-origin: 50% 40%; }
+.ov { animation-duration: .35s; }
+#toast { animation-duration: .5s; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } .nav-ind { transition: none; } }
